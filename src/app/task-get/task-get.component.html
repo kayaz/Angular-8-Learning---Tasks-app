@@ -1,0 +1,15 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <td>Nazwa</td>
+    <td>Ilość</td>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let task of taskslist">
+    <td>{{ task.nazwa }}</td>
+    <td>{{ task.ilosc }}</td>
+  </tr>
+  </tbody>
+</table>
