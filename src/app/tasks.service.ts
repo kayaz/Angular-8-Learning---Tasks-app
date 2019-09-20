@@ -26,7 +26,7 @@ export class TasksService {
       objectStore.createIndex('ilosc', 'ilosc', { unique: false });
     });
 
-    db.openDatabase(1).then(function() {
+    db.openDatabase(1).then(() => {
       db.add('tasklist', { nazwa: Nazwa, ilosc: Ilosc }).then(
         () => {
           this.router.navigate(['task']);
@@ -39,18 +39,10 @@ export class TasksService {
   }
   getTask() {
     const db = new NgxIndexedDB('Tasks', 1);
-
-    db.openDatabase(1, evt => {
-      const objectStore = evt.currentTarget.result.createObjectStore('tasklist', { keyPath: 'id', autoIncrement: true });
-
-      objectStore.createIndex('nazwa', 'nazwa', { unique: false });
-      objectStore.createIndex('ilosc', 'ilosc', { unique: false });
-    });
-
-    db.openDatabase(1).then(function() {
+    db.openDatabase(1).then(() => {
       db.getAll('tasklist').then(
-        tasks => {
-          return tasks;
+        (tasks) => {
+          console.log(tasks);
         },
         error => {
           console.log(error);

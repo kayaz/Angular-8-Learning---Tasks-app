@@ -11,6 +11,7 @@ export class TaskGetComponent implements OnInit {
   constructor(private ps: TasksService) {}
 
   ngOnInit() {
-    console.log(this.ps.getTask());
+    const data = this.ps.getTask();
+    //console.log(data);
   }
 }
