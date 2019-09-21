@@ -3,6 +3,7 @@
   <tr>
     <td>Nazwa</td>
     <td>Ilość</td>
+    <td>Ilość</td>
   </tr>
   </thead>
 
@@ -10,6 +11,7 @@
   <tr *ngFor="let task of taskslist">
     <td>{{ task.nazwa }}</td>
     <td>{{ task.ilosc }}</td>
+    <td><button (click) = "removeTask(task.id)" class="btn btn-sm btn-danger">Usuń</button></td>
   </tr>
   </tbody>
 </table>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../tasks.service';
+import {NgxIndexedDB} from 'ngx-indexed-db';
+
 
 @Component({
   selector: 'app-task-get',
@@ -8,10 +10,26 @@ import { TasksService } from '../tasks.service';
 })
 export class TaskGetComponent implements OnInit {
 
-  constructor(private ps: TasksService) {}
+  db = new NgxIndexedDB('Tasks', 1);
+  taskslist;
+
+  constructor(private ps: TasksService) {
+  }
+
+  removeTask(id) {
+    this.ps.removeTask(id);
+  }
 
   ngOnInit() {
-    const data = this.ps.getTask();
-    //console.log(data);
+    this.db.openDatabase(1).then(() => {
+      this.db.getAll('tasklist').then(
+        (tasks) => {
+          this.taskslist = tasks;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    });
   }
 }
